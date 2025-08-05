@@ -1,10 +1,18 @@
+[global]
+developmentMode = false
+
 [theme]
 primaryColor = "#667eea"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f0f2f6"
 textColor = "#262730"
+font = "sans serif"
 
 [server]
 headless = true
 port = $PORT
 enableCORS = false
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
