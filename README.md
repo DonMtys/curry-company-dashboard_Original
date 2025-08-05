@@ -4,46 +4,81 @@
 
 Dashboard interativo desenvolvido em Streamlit para análise completa de performance de entregas da Curry Company.
 
-### 🚀 **Demonstração Online**
-🔗 **[Acesse o Dashboard ao Vivo](https://seu-app.streamlit.app)**
+### 🚀 **Deploy na Nuvem - Streamlit Cloud**
+
+Este projeto está configurado para deploy automático no **Streamlit Cloud**.
+
+#### � **Como Fazer Deploy:**
+
+1. **Acesse:** https://share.streamlit.io/
+2. **Faça login** com sua conta GitHub
+3. **Clique em "New app"**
+4. **Configure:**
+   - Repository: `DonMtys/curry-company-dashboard_Original`
+   - Branch: `master`
+   - Main file path: `Home.py`
+5. **Clique em "Deploy!"**
 
 ### 📋 **Funcionalidades**
 
 #### 🏠 **Home Portal**
 - Visão geral da empresa
-- Métricas principais
-- Navegação para dashboards especializados
+- Métricas principais em tempo real
+- Navegação intuitiva para dashboards especializados
+- Design responsivo e profissional
 
 #### 📊 **Visão Empresa**
-- KPIs executivos
-- Análise de tendências
-- Performance por região
+- KPIs executivos e crescimento
+- Análise de tendências temporais
+- Performance geral da empresa
+- Comparativos mensais
+- Insights estratégicos
 
 #### 🚚 **Visão Entregadores**
-- Performance individual
-- Métricas de produtividade
-- Análise geográfica
+- Performance individual dos entregadores
+- Análise de avaliações e produtividade
+- Tempos de entrega e eficiência
+- Mapa de localizações
+- Indicadores de performance
 
 #### 🍽️ **Visão Restaurantes**
-- Análise de parceiros
-- Performance por tipo de comida
-- Métricas de qualidade
+- Análise por cidade/região
+- Impacto do tráfego nas entregas
+- Qualidade das entregas
+- Tendências por área geográfica
+- Otimização de rotas
 
 ### 🛠️ **Tecnologias Utilizadas**
 
 - **Python 3.8+**
-- **Streamlit** - Framework web
-- **Pandas** - Manipulação de dados
+- **Streamlit** - Framework web para dashboards
+- **Pandas** - Manipulação e análise de dados
 - **Plotly** - Visualizações interativas
-- **Folium** - Mapas interativos
-- **Haversine** - Cálculos geográficos
+- **Folium** - Mapas interativos geográficos
+- **Haversine** - Cálculos de distância geográfica
 
-### 📦 **Instalação Local**
+### 📦 **Estrutura do Projeto**
+
+```
+curry-company-dashboard/
+├── Home.py                         # Página principal (ponto de entrada)
+├── pages/
+│   ├── Visão_empresa_simples.py   # Dashboard executivo
+│   ├── Visão_Entregadores.py      # Análise de entregadores
+│   └── Visão_Restaurantes.py      # Análise geográfica
+├── train.csv                       # Dados das entregas
+├── requirements.txt                # Dependências Python
+├── .streamlit/
+│   └── config.toml                # Configurações do Streamlit
+└── README.md                       # Documentação
+```
+
+### � **Instalação Local**
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/curry-company-dashboard.git
-cd curry-company-dashboard
+git clone https://github.com/DonMtys/curry-company-dashboard_Original.git
+cd curry-company-dashboard_Original
 
 # Instale as dependências
 pip install -r requirements.txt
