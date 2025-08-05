@@ -10,15 +10,6 @@ Este projeto está configurado para deploy automático no **Streamlit Cloud**.
 
 #### � **Como Fazer Deploy:**
 
-1. **Acesse:** https://share.streamlit.io/
-2. **Faça login** com sua conta GitHub
-3. **Clique em "New app"**
-4. **Configure:**
-   - Repository: `DonMtys/curry-company-dashboard_Original`
-   - Branch: `master`
-   - Main file path: `Home.py`
-5. **Clique em "Deploy!"**
-
 ### 📋 **Funcionalidades**
 
 #### 🏠 **Home Portal**
@@ -151,9 +142,9 @@ O dashboard permite filtragem por:
 
 ### 📞 **Contato**
 
-- **📧 Email**: contato@currycompany.com
+- **📧 Email**: joaovictor323444@gmail.com
 - **📱 WhatsApp**: +55 (11) 9999-9999
-- **🌐 Website**: www.currycompany.com
+- **🌐 Website**: https://curry-company-dashboardoriginal-inztzjwsyjzpq5cmz6wzku.streamlit.app/
 
 ---
 
