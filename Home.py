@@ -102,9 +102,14 @@ st.markdown("""
 @st.cache_data
 def load_basic_data():
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(script_dir, 'train.csv')
-        df = pd.read_csv(csv_path)
+        # Tentar carregar do diretório atual (Streamlit Cloud)
+        if os.path.exists('train.csv'):
+            df = pd.read_csv('train.csv')
+        # Tentar carregar do diretório do script
+        else:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            csv_path = os.path.join(script_dir, 'train.csv')
+            df = pd.read_csv(csv_path)
         
         # Limpeza básica dos dados - similar ao que está nos outros dashboards
         # Filtrar valores válidos

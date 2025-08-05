@@ -4,14 +4,6 @@ import streamlit as st
 from datetime import datetime
 import os
 
-# Configuração da página
-st.set_page_config(
-    page_title="Curry Company - Visão Empresa",
-    page_icon="🏢",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 # CSS personalizado
 st.markdown("""
 <style>
@@ -40,9 +32,17 @@ st.markdown("""
 @st.cache_data
 def load_data():
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(script_dir, 'train.csv')
-        df = pd.read_csv(csv_path)
+        # Tentar carregar do diretório atual (Streamlit Cloud)
+        if os.path.exists('train.csv'):
+            df = pd.read_csv('train.csv')
+        # Tentar carregar do diretório pai (estrutura local)
+        elif os.path.exists('../train.csv'):
+            df = pd.read_csv('../train.csv')
+        # Último recurso - buscar na raiz do projeto
+        else:
+            script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            csv_path = os.path.join(script_dir, 'train.csv')
+            df = pd.read_csv(csv_path)
         
         # Limpeza básica
         df = df[df['Delivery_person_Age'] != 'NaN ']

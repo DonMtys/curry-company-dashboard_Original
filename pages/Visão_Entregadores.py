@@ -7,20 +7,6 @@ from datetime import datetime
 from streamlit_folium import st_folium
 import folium
 import os
-#import pillow_avif_plugin
-
-# Configuração da página
-st.set_page_config(
-    page_title="Curry Company - Executive Dashboard",
-    page_icon="🍛",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.linkedin.com/in/seu-perfil',
-        'Report a bug': "mailto:contato@currycompany.com",
-        'About': "# Curry Company Analytics Dashboard\nDashboard executivo para análise de performance de entregas."
-    }
-)
 
 # CSS personalizado avançado para aparência enterprise
 st.markdown("""
@@ -182,11 +168,44 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Obter o diretório do script atual
-script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, 'train.csv')
-df = pd.read_csv(csv_path)
+# Função para carregar dados
+@st.cache_data
+def load_data():
+    try:
+        # Tentar carregar do diretório atual (Streamlit Cloud)
+        if os.path.exists('train.csv'):
+            df = pd.read_csv('train.csv')
+        # Tentar carregar do diretório pai (estrutura local)
+        elif os.path.exists('../train.csv'):
+            df = pd.read_csv('../train.csv')
+        # Último recurso - buscar na raiz do projeto
+        else:
+            script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            csv_path = os.path.join(script_dir, 'train.csv')
+            df = pd.read_csv(csv_path)
+        return df
+    except Exception as e:
+        st.error(f"Erro ao carregar dados: {e}")
+        # Retornar dados fictícios em caso de erro
+        return pd.DataFrame({
+            'ID': range(1000),
+            'Delivery_person_ID': range(100, 1100),
+            'Delivery_person_Age': [25] * 1000,
+            'Delivery_person_Ratings': [4.5] * 1000,
+            'Order_Date': pd.date_range('2022-01-01', periods=1000),
+            'Time_taken(min)': [30] * 1000,
+            'City': ['São Paulo'] * 500 + ['Rio de Janeiro'] * 300 + ['Belo Horizonte'] * 200,
+            'Road_traffic_density': ['Low'] * 250 + ['Medium'] * 250 + ['High'] * 250 + ['Jam'] * 250,
+            'Festival': ['No'] * 800 + ['Yes'] * 200,
+            'multiple_deliveries': [1] * 1000,
+            'Type_of_order': ['Meal'] * 1000,
+            'Type_of_vehicle': ['motorcycle'] * 1000,
+            'Delivery_location_latitude': [19.1] * 1000,
+            'Delivery_location_longitude': [72.8] * 1000
+        })
 
+# Carregar dados
+df = load_data()
 df1 = df.copy()
 
  #1. convertando a coluna Age de texto para numero
